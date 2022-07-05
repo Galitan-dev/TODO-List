@@ -1,0 +1,9 @@
+name: TODO-List
+description: A Todo List in PhP to practice
+private: false
+license:
+  id: mit
+  name: MIT License
+author: Galitan-dev
+template: blank
+path: /Users/ethan/Documents/Development.nosync/TODO-List

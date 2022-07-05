@@ -1,0 +1,13 @@
+### Gabum ####
+.gabum/*
+!.gabum/project.yml
+!.gabum/init.js
+
+### Visual Studio Code ###
+.vscode/*
+
+# Uncomment the following line if you want to publish your settings
+# !.vscode/settings.json
+
+### OS Files ###
+.DS_Store
