@@ -1,3 +1,44 @@
 .menu {
+    position: relative;
     background-color: #FFFFFF;
+    padding: 50px 0 100px 50px;
+}
+
+.menu h1 {
+    font-family: 'Lobster', cursive;
+}
+
+.menu .navigation {
+    margin-top: 60px;
+    list-style-type: none;
+}
+
+.menu .more {
+    position: absolute;
+    bottom: 50px;
+    list-style-type: none;
+    width: calc(100% - 50px);
+}
+
+.menu .tab {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    color: #AAA;
+    transition: color 0.2s ease-in-out;
+}
+
+.menu .tab i {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.menu .tab:hover,
+.menu .tab.active {
+    color: #000;
+}
+
+.menu .tab.active {
+    border-right: 5px solid #329685;
 }

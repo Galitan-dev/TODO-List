@@ -1,3 +1,17 @@
+<?php 
+$pageIndex = 0;
+if (isset($_GET['p'])) {
+    $pageIndex = intval($_GET['p']);
+} 
+if ($pageIndex < 0 || $pageIndex > 6) {
+    $pageIndex = 0;
+}
+
+$pages = array('overview', 'stats', 'projects', 'chat', 'calendar', 'settings', 'log-out');
+
+$page = $pages[$pageIndex];
+?>
+
 <!-- <php
 $host = $_ENV["MYSQL_HOST"];
 $user = $_ENV["MYSQL_USER"];
@@ -43,45 +57,36 @@ foreach ($tasks as $task) {
             <h1>TODO List</h1>
         </div>
 
-        <div class="navigation">
-            <div class="tab">
-                <i class="uil uil-home"></i>
-                <h2>Overview</h2>
-            </div>
-            <div class="tab">
-                <i class="uil uil-signal-alt-3"></i>
-                <h2>Stats</h2>
-            </div>
-            <div class="tab">
-                <i class="uil uil-folder"></i>
-                <h2>Projects</h2>
-            </div>
-            <div class="tab">
-                <i class="uil uil-comment-alt-lines"></i>
-                <h2>Chat</h2>
-            </div>
-            <div class="tab">
-                <i class="uil uil-calendar-alt"></i>
-                <h2>Calendar</h2>
-            </div>
-        </div>
+        <ul class="navigation">
+            <?php 
+            $icons = array('home', 'signal-alt-3', 'folder', 'comment-alt-lines', 'calendar-alt', 'setting', 'signout');
 
-        <div class="more">
-            <div class="action">
-                <i class="uil uil-setting"></i>
-                <h2>Settings</h2>
-            </div>
-            <div class="action">
-                <i class="uil uil-signout"></i>
-                <h2>Log out</h2>
-            </div>
-        </div>
+            for ($i = 0; $i < count($pages); $i++) {
+                $name = $pages[$i];
+                $iconName = $icons[$i];
+
+                $className="tab";
+                if ($page === $name) $className = $className . ' active';
+
+                if ($i == 5) {
+                    echo '</ul>';
+                    echo '<ul class="more">';
+                }
+
+                echo '<li><a class="' . $className . '" href="?p=' . $i . '">';
+                echo '<i class="uil uil-' . $iconName . '"></i>';
+                echo str_replace('-', ' ', 
+                strtoupper(substr($name, 0, 1)) . 
+                    substr($name, 1)
+                );
+                echo '</a></li>';
+            }
+            ?>
+        </ul>
     </div>
 
-    <div>
-        <h1>Hello !</h1>
-        <a href="http://localhost:8080" target="_blank">Open PHPMyAdmin</a>
-        <a href="/assets/images/design.webp">View Design</a>
-    </div>
+    <main>
+        <?php include("pages/" . $page . ".php"); ?>
+    </main>
 </body>
 </html>
