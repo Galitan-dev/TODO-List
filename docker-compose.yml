@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  php-apache:
+    container_name: todo-list-apache
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    volumes:
+      - ./php/src:/var/www/html/
+    ports:
+      - 80:80
+    env_file: .env
+
+  db:
+    container_name: $MYSQL_DATABASE
+    image: mysql
+    restart: always
+    ports:
+      - 9906:3306
+    env_file: .env
+
+  phpmyadmin:
+    container_name: todo-list-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    restart: always
+    environment:
+      PMA_HOST: $MYSQL_DATABASE
+    depends_on:
+      - db

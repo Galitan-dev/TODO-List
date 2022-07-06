@@ -11,3 +11,8 @@
 
 ### OS Files ###
 .DS_Store
+
+### Security ###
+.env
+
+node_modules/
